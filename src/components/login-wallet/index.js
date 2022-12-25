@@ -17,7 +17,7 @@ class LoginWallet extends Component {
     componentWillMount() {
         let isLoggedIn = localStorage.getItem("isLogin")
         if(isLoggedIn === true) {
-            window.location.replace('http://localhost:3000/wallet');
+            this.props.history.push('/wallet');
         }
     }
 
@@ -32,6 +32,11 @@ class LoginWallet extends Component {
     handleSubmit = async () => {
         this.setState({isLoading: true});
         let { username } = this.state;
+        if(username.trim() === "") {
+            alert("Value required for username field")
+            this.setState({isLoading: false});
+            return;
+        }
         let requestOptions = {
             method: "POST",
             headers: { 
@@ -42,12 +47,11 @@ class LoginWallet extends Component {
             })
         };
         
-        await fetch('http://localhost:8080/wallet/login', requestOptions)
+        await fetch(process.env.REACT_APP_BACKEND_URL + '/wallet/login', requestOptions)
         .then(response => {
             return response.json();
         })
         .then(data => {
-            console.log(data);
             this.setState({isLoading: false});
             if(data.errMsg) {
                 alert(data.errMsg)
@@ -56,7 +60,7 @@ class LoginWallet extends Component {
                 localStorage.setItem("ID", data.id);
                 localStorage.setItem("Name", data.name);
                 localStorage.setItem("Balance", data.balance);
-                window.location.replace('http://localhost:3000/wallet');
+                this.props.history.push('/wallet');
             }
         })
     }

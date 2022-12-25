@@ -13,14 +13,12 @@ class SetupWallet extends Component {
             initialBalance: 0.0000,
             isLoading: false,
         }
-
-        console.log(props);
     }
 
     componentWillMount() {
         let isLoggedIn = localStorage.getItem("isLogin")
         if(isLoggedIn === "true") {
-            window.location.replace('http://localhost:3000/wallet');
+            this.props.history.push('/wallet');
         }
     }
 
@@ -35,6 +33,11 @@ class SetupWallet extends Component {
     handleSubmit = async () => {
         this.setState({isLoading: true});
         let { username, initialBalance } = this.state;
+        if(username.trim() === "") {
+            alert("Value required for username field")
+            this.setState({isLoading: false});
+            return;
+        }
         initialBalance = Number(initialBalance).toFixed(4);
 
         let requestOptions = {
@@ -49,7 +52,7 @@ class SetupWallet extends Component {
             })
         };
         
-        await fetch('http://localhost:8080/setup', requestOptions)
+        await fetch(process.env.REACT_APP_BACKEND_URL + '/setup', requestOptions)
         .then(response => {
             return response.json();
         })
@@ -62,7 +65,7 @@ class SetupWallet extends Component {
                 localStorage.setItem("ID", data.id);
                 localStorage.setItem("Name", data.name);
                 localStorage.setItem("Balance", data.balance);
-                window.location.replace('http://localhost:3000/wallet');
+                this.props.history.push('/wallet');
             }
         })
     }
