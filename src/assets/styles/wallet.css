@@ -1,0 +1,133 @@
+
+.wallet-bg {
+    display: flex;
+    align-items: center;
+}
+
+.wallet-page {
+    background-color: #fafbfc;
+    width: 80%;
+    height: 80%;
+    border-radius: 20px;
+    column-gap: 0px;
+}
+
+span.wallet-navs svg {
+    min-height: 10%;
+    min-width: 10%;
+    margin-right: 10px;
+}
+
+div.wallet-logo img {
+    max-width: 100%;
+    min-width: 100%;
+}
+
+.wallet-option-container {
+    display: flex;
+    height: 42.5%;
+}
+
+.wallet-options {
+    height: 100%;
+    padding: 20px;
+}
+
+.wallet-option-card {
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    border-radius: 40px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.x2 {
+    height: 200%;
+}
+
+.wallet-details-heading, .transaction-heading {
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    border-bottom: 3px solid #f2f3f6;
+    font-family: 'Open Sans';
+    font-weight: 900;
+    letter-spacing: 2px;
+    background-color: #f16983;
+    border-radius: 40px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+
+.wallet-details-body {
+    padding: 20px;
+    height: 50%;
+}
+
+.transaction-body {
+    padding: 20px;
+}
+
+.wallet-details-body-name {
+    height: 100%;
+    display: flex;
+}
+
+div.wallet-details-body-name img{
+    max-width: 100%;
+    max-height: 100%;
+}
+
+div.wallet-details-body-name span > p {
+    margin-left: 20px;
+    font-family: 'Roboto';
+    font-weight: 700;
+    font-size: 20px;
+    margin-bottom: 0;
+}
+
+div.wallet-details-body-name span > svg {
+    margin-left: 20px;
+    font-family: 'Roboto';
+    font-size: 35px;
+    color: #b8ccd7;
+}
+
+div.wallet-details-body-name span > span {
+    margin-left: 20px;
+    font-family: 'Roboto';
+    font-size: 1vw;
+    font-weight: 700;
+}
+
+.transaction-toggle {
+    padding: 20px;
+}
+
+div.transaction-amount > div > div > label {
+    color: black;
+}
+
+div.transaction-description > div > div > label {
+    color: black;
+}
+
+div.transaction-submit > div > div > button {
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    background-color: #f16983;
+    color: black;
+    margin-top: 70px;
+}
+
+.wallet-option-img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+div.wallet-option-img img {
+    max-width: 80%;
+    min-width: 80%;
+    border-radius: 10px;
+}

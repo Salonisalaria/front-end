@@ -1,0 +1,119 @@
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.login-image {
+}
+
+.login-image > img {
+    height: 400px;
+    width: 400px;
+}
+
+.login-header {
+    padding: 30px 30px 30px 15px;
+    border-bottom: 1px solid #ebe8e8;
+    color: #f498c2;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 3px -1px rgba(0, 0, 0, 0.1);
+}
+
+#loginform {
+}
+
+.login-form-body {
+    display: flexbox;
+    box-shadow:
+    0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+    0 12.5px 10px rgba(0, 0, 0, 0.06),
+    0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+    0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+    0 100px 80px rgba(0, 0, 0, 0.12)
+  ;
+    margin: 100px auto;
+    background: white;
+    border-radius: 5px;
+    font-family: "Roboto";
+    font-weight: 700;
+    letter-spacing: 3px;
+}
+
+.login-form-input-parent {
+    padding: 0px 10px;
+    font-family: "Roboto";
+    font-weight: 300;
+    letter-spacing: 1px;
+    font-size: 12px;
+}
+
+.login-form-submit-parent {
+    padding: 20px 20px 50px 20px;
+}
+
+.login-form-submit {
+    width: 100%;
+    font-family: "Roboto";
+    font-weight: 300;
+    letter-spacing: 2px;
+}
+
+div.login-form-submit button {
+    width: 100%;
+    border-radius: 40px;
+    background-color: #f498c2;
+    color: #ffffff;
+    padding: 15px 10px;
+    font-family: "Roboto";
+    font-weight: 700;
+    letter-spacing: 4px;
+}
+
+div.login-form-submit button:hover {
+    background-color: #f498c2;
+    color: #ffffff;
+}
+
+div.login-form-input label {
+    color: #b8ccd7;
+}
+
+div.login-form-input input {
+    border: none;
+    outline: none;
+    border-bottom: 1px solid #ebe8e8;
+    font-size: 18px;
+    padding-top: 5px;
+    font-family: "Roboto";
+    font-weight: 10;
+    letter-spacing: 0px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+div.login-form-input input[type=number] {
+    -moz-appearance: textfield;
+}
+
+.login-form-input {
+    padding: 20px;
+}
+
+.login-form-submit-extramsg {
+    text-align: center;
+    font-family: "Roboto";
+    letter-spacing: 0px;
+    padding-top: 10px;
+    color: #f498c2 !important;
+}
+
+div.login-form-submit-extramsg a {
+    text-decoration: none;
+    color: inherit;
+}
