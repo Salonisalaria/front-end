@@ -49,4 +49,35 @@ export const TRANSACTION_COLUMNS = [
       dataIndex: 'createdAt',
       render: data =>{  return format(new Date(data), 'dd/MM/yyyy kk:mm:ss')}
     }
-  ];
+];
+
+export const CSV_FIELDS = [
+  {
+      label: 'Transaction ID',
+      key: 'transactionId',
+    },
+    {
+      label: 'Description',
+      key: 'transactionDescription',
+    },
+    {
+      label: 'Transaction Type',
+      key: 'transactionType',
+    },
+    {
+      label: 'Transaction Amount',
+      key: 'transactionAmout',
+    },
+    {
+      label: 'Transaction Status',
+      key: 'transactionStatus',
+    },
+    {
+      label: 'Balance Amount',
+      key: 'balanceAmount',
+    },
+    {
+      label: 'Date Of Transaction',
+      key: 'createdAt',
+    }
+]

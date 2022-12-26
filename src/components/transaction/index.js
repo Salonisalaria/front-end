@@ -3,7 +3,8 @@ import "../../assets/styles/wallet.css";
 import "../../assets/styles/transaction.css";
 import { Table } from 'antd';
 import Topbar from "../topbar";
-import { TRANSACTION_COLUMNS } from "../../constants/transaction";
+import { TRANSACTION_COLUMNS, CSV_FIELDS } from "../../constants/transaction";
+import {CSVLink} from "react-csv";
 
 class Transaction extends Component {
     constructor() {
@@ -12,7 +13,35 @@ class Transaction extends Component {
             isLoading: true,
             walletId: localStorage.getItem("ID"),
             data: [],
+            pagination: {
+                onChange: this.updatePageDetails,
+                page: 1,
+                pageSize: 10,
+                showSizeChanger: true,
+            }
         };
+    }
+
+    updatePageDetails = async (pageNumber, pageSize) => {
+        this.setState({
+            isLoading: true,
+        });
+
+        const { walletId, pagination } = this.state;
+        let skip = (pageNumber - 1) * pageSize;
+        let limit = pageSize;
+
+        let res = await this.fetchTableData(walletId, skip, limit);
+        this.setState({
+            isLoading: false,
+            data: res.data,
+            pagination: {
+                ...pagination,
+                total: res.total,
+                page: pageNumber,
+                pageSize: pageSize
+            }
+        });
     }
 
     async componentWillMount() {
@@ -22,40 +51,55 @@ class Transaction extends Component {
         }
 
         this.setState({isLoading: true});
-        let { walletId } = this.state;
+        let { walletId, pagination } = this.state;
+        let {page, pageSize} = pagination
+        let skip = (page - 1) * pageSize
+        let limit = pageSize
+
+        let res = await this.fetchTableData(walletId, skip, limit);
+        this.setState({
+            isLoading: false,
+            data: res.data,
+            pagination: {
+                ...pagination,
+                total: res.total,
+            }
+        });
+    }
+
+    async fetchTableData(walletId, skip, limit) {
         let requestOptions = {
             method: "GET",
             headers: { 
                 "Content-Type": "application/json",
             }
         };
-        
-        await fetch(process.env.REACT_APP_BACKEND_URL + '/transactions?walletId='+ walletId + "&skip=0&limit=0", requestOptions)
-        .then(response => {
-            return response.json();
-        })
-        .then(data => {
-            console.log(data);
-            this.setState({isLoading: false});
-            if(data.errMsg) {
-                alert(data.errMsg)
-            } else {
-                this.setState({
-                    data: data
-                });
-            }
-        })
+
+        const response = await fetch(process.env.REACT_APP_BACKEND_URL + '/transactions?walletId='+ walletId + "&skip="+ skip + "&limit=" + limit, requestOptions)
+        const res = await response.json();
+        return res;
     }
 
     render() {
         const { name } = this.props;
-        const { data } = this.state;
+        const { data, pagination } = this.state;
 
         return (
             <div className="w-100 h-100">
                 <Topbar name={name} />
                 <div className="transaction-container">
-                    <Table columns={TRANSACTION_COLUMNS} dataSource={data} pagination={{ pageSize: 10 }} scroll={{ y: 450 }} size={"large"} />
+                    <Table columns={TRANSACTION_COLUMNS} dataSource={data} pagination={pagination} scroll={{ y: 420 }} showSizeChanger rowKey={"transactionId"} />
+                    <CSVLink
+                    headers={CSV_FIELDS}
+                    filename={"data.csv"}
+                    data={data}
+                    className="btn btn-primary"
+                    onClick={()=>{
+                        alert("The file is downloading");
+                    }}
+                    >
+                            Export to CSV
+                    </CSVLink>
                 </div>
             </div>
         );

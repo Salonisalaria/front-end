@@ -28,7 +28,6 @@ class Wallet extends Component {
     }
 
     handleNav = (e) => {
-        console.log(e.target.id);
         if(e.target.id === "overview") {
             this.setState({
                 showTransaction: false
